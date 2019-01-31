@@ -1,7 +1,7 @@
 import random
 from config import shape_colors, number_of_colors
 
-class faller(object):  # *
+class Faller(object):  # *
     def __init__(self, x, y, shape):
         self.x = x
         self.y = y

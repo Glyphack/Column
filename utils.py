@@ -1,7 +1,7 @@
 import pygame, random
 
 from config import *
-from sprites import faller
+from sprites import Faller
 
 def create_grid(locked_pos={}):
     grid = [[(0,0,0) for _ in range(6)] for _ in range(12)]
@@ -52,7 +52,7 @@ def check_lost(positions):
 
 
 def get_shape():
-    return faller(5, 0, random.choice(shapes))
+    return Faller(5, 0, random.choice(shapes))
 
 
 def draw_text_middle(surface, text, size, color):

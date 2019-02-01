@@ -139,3 +139,11 @@ def draw_window(surface, grid, score=0):
 
     draw_grid(surface, grid)
     #pygame.display.update()
+
+
+def read_file(file_path: str) -> list:
+    result = list()
+    with open(file_path, 'r')  as lines:
+        for line in lines:
+            result.append(line)
+    return result

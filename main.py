@@ -7,7 +7,6 @@ pygame.font.init()
 
 
 def main(win):
-    last_score = max_score()
     locked_positions = {}
     grid = create_grid(locked_positions)
 
@@ -78,7 +77,7 @@ def main(win):
             change_faller = False
             score += clear_rows(grid, locked_positions) * 1
 
-        draw_window(win, grid, score, last_score)
+        draw_window(win, grid, score)
         draw_next_shape(next_faller, win)
         pygame.display.update()
 

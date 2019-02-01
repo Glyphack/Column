@@ -112,3 +112,5 @@ top_left_y = s_height - play_height
 
 shapes = [S, Z, I, O, J, L, T]
 shape_colors = [(0, 255, 0), (255, 0, 0), (0, 255, 255), (255, 255, 0), (255, 165, 0), (0, 0, 255), (128, 0, 128), (0, 128, 256)]
+
+file_play = False

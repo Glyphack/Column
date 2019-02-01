@@ -2,7 +2,7 @@ import pygame
 import random
 
 from utils import *
-
+from config import file_play
 pygame.font.init()
 
 
@@ -20,7 +20,6 @@ def main(win, moves):
     score = 0
     cursor = 0
     play = True
-    file_play = True
     freeze = False
     print(moves)
     while run:

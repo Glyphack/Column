@@ -16,15 +16,17 @@ def main(win, moves):
     next_faller = get_shape()
     clock = pygame.time.Clock()
     fall_time = 0
-    fall_speed = 0.27
+    fall_speed = 0.3
     score = 0
-    x = 0
+    cursor = 0
     play = True
-    file_play = False
+    file_play = True
     freeze = False
-
+    print(moves)
     while run:
         if file_play:
+            if cursor >= len(moves) and run:
+                play = False
             grid = create_grid(locked_positions)
             fall_time += clock.get_rawtime()
             clock.tick()
@@ -36,18 +38,35 @@ def main(win, moves):
                     current_faller.y -= 1
                     change_faller = True
 
-            if play and not freeze:
-                print(x)
-                move = moves[x]
-                x += 1
-                if move == "SPACE":
-                    current_faller.rotation += 1
-                    if not (valid_space(current_faller, grid)):
-                        current_faller.rotation -= 1
-                if move == "RIGHT":
-                    current_faller.x -= 1
-                    if not (valid_space(current_faller, grid)):
-                        current_faller.x -= 1
+            if play:
+                while not freeze:
+                        move = moves[cursor].rstrip()
+                        cursor += 1
+                        if move == "SPACE":
+                            current_faller.rotation += 1
+                            print("rotated")
+                            if not (valid_space(current_faller, grid)):
+                                current_faller.rotation -= 1
+                        if move == "RIGHT":
+                            current_faller.x += 1
+                            print("right")
+                            if not (valid_space(current_faller, grid)):
+                                current_faller.x -= 1
+                        if move == "LEFT":
+                            current_faller.x -= 1
+                            print('left')
+                            if not (valid_space(current_faller, grid)):
+                                current_faller.x += 1
+                        if move == "DOWN":
+                            current_faller.y += 1
+                            if not (valid_space(current_faller, grid)):
+                                current_faller.y -= 1
+                        if move == "FREEZE":
+                            print('freezed')
+                            freeze = True
+                        if cursor >= len(moves):
+                            play = False
+                            break
 
             shape_pos = convert_shape_format(current_faller)
 
@@ -64,6 +83,7 @@ def main(win, moves):
                 current_faller = next_faller
                 next_faller = get_shape()
                 change_faller = False
+                freeze = False
                 score += clear_rows(grid, locked_positions) * 1
 
             draw_window(win, grid, score)
@@ -76,8 +96,6 @@ def main(win, moves):
                 pygame.time.delay(1500)
                 run = False
 
-            if x >= len(moves) and run:
-                play = False
 
 
         else:

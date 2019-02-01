@@ -1,11 +1,12 @@
 import pygame
 
 from main import main
-from utils import draw_text_middle
+from utils import draw_text_middle, read_file
 from config import s_width, s_height
 
 
 def main_menu(win):
+    moves = read_file("moves.txt")
     run = True
     while run:
         win.fill((0,0,0))
@@ -15,7 +16,7 @@ def main_menu(win):
             if event.type == pygame.QUIT:
                 run = False
             if event.type == pygame.KEYDOWN:
-                main(win)
+                main(win, moves)
 
     pygame.display.quit()
 
